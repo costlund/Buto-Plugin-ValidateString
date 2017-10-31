@@ -1,0 +1,2 @@
+# Buto-Plugin-ValidateString
+Validation.
