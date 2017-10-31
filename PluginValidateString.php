@@ -6,7 +6,7 @@ class PluginValidateString{
   /**
    * Character validation.
    */
-  public function validate_characters($field, $form, $data = array('characters' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVwXYZ0123456789')){
+  public function validate_characters($field, $form, $data = array('characters' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVwXYZ0123456789_')){
     if(wfArray::get($form, "items/$field/is_valid")){
       $str = wfArray::get($form, "items/$field/post_value");
       $error = false;
