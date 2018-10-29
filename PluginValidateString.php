@@ -24,4 +24,19 @@ class PluginValidateString{
     }
     return $form;
   }
+  /**
+   * Length validation.
+   */
+  public function validate_length($field, $form, $data = array('length' => 255)){
+    if(wfArray::get($form, "items/$field/is_valid")){
+      $str = wfArray::get($form, "items/$field/post_value");
+      $current_length = strlen(wfArray::get($form, "items/$field/post_value"));
+      $length = $data['length'];
+      if($current_length > $length){
+        $form = wfArray::set($form, "items/$field/is_valid", false);
+        $form = wfArray::set($form, "items/$field/errors/", __("?label has a length of ?current_length where ?length is max!", array('?label' => wfArray::get($form, "items/$field/label"), '?length' => $length, '?current_length' => $current_length)));
+      }
+    }
+    return $form;
+  }
 }
