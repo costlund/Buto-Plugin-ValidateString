@@ -39,4 +39,20 @@ class PluginValidateString{
     }
     return $form;
   }
+  /**
+   * Length validation.
+   * Will only check if string not empty.
+   */
+  public function validate_length_minmax($field, $form, $data = array('min' => 0, 'max' => 255)){
+    if(wfArray::get($form, "items/$field/is_valid")){
+      $strlen = strlen(wfArray::get($form, "items/$field/post_value"));
+      $min = wfArray::get($data, 'min');
+      $max = wfArray::get($data, 'max');
+      if($strlen>0 && ($strlen<$min || $strlen>$max)){
+        $form = wfArray::set($form, "items/$field/is_valid", false);
+        $form = wfArray::set($form, "items/$field/errors/", __("?label must have a length between ?min and ?max!", array('?label' => wfArray::get($form, "items/$field/label"), '?min' => $min, '?max' => $max)));
+      }
+    }
+    return $form;
+  }
 }
