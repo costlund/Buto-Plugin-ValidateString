@@ -6,8 +6,8 @@ class PluginValidateString{
   /**
    * Character validation.
    */
-  public function validate_characters($field, $form, $data = array('characters' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVwXYZ0123456789_')){
-    if(wfArray::get($form, "items/$field/is_valid")){
+  public function validate_characters($field, $form, $data = array('characters' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_')){
+    if(wfArray::get($form, "items/$field/is_valid" && isset($data['characters']))){
       $str = wfArray::get($form, "items/$field/post_value");
       $error = false;
       for($i=0;$i<strlen($str);$i++){
@@ -28,7 +28,7 @@ class PluginValidateString{
    * Length validation.
    */
   public function validate_length($field, $form, $data = array('length' => 255)){
-    if(wfArray::get($form, "items/$field/is_valid")){
+    if(wfArray::get($form, "items/$field/is_valid") && isset($data['length'])){
       $str = wfArray::get($form, "items/$field/post_value");
       $current_length = strlen(wfArray::get($form, "items/$field/post_value"));
       $length = $data['length'];
@@ -44,7 +44,7 @@ class PluginValidateString{
    * Will only check if string not empty.
    */
   public function validate_length_minmax($field, $form, $data = array('min' => 0, 'max' => 255)){
-    if(wfArray::get($form, "items/$field/is_valid")){
+    if(wfArray::get($form, "items/$field/is_valid") && isset($data['min']) && isset($data['max'])){
       $strlen = strlen(wfArray::get($form, "items/$field/post_value"));
       $min = wfArray::get($data, 'min');
       $max = wfArray::get($data, 'max');
