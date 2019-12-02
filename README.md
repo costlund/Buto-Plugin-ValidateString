@@ -1,7 +1,6 @@
 # Buto-Plugin-ValidateString
-
 Form validators.
-
+## Length
 ```
 items:
   name:
@@ -15,9 +14,7 @@ items:
         data:
           length: 50
 ```
-
-
-
+## Characters
 ```
 items:
   name:
@@ -31,8 +28,7 @@ items:
         data:
           characters: abc
 ```
-
-
+## Length min max
 ```
 items:
   name:

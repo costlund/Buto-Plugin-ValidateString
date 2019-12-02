@@ -1,0 +1,3 @@
+?label must have a length between ?min and ?max!: ?label måste ha en längd mellan ?min och ?max!
+?label has a length of ?current_length where ?length is max!: ?label har en länd på ?current_length där ?length är max!
+?label has invalid characters!: ?label har otillåtna tecken!

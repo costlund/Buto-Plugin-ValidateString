@@ -3,6 +3,12 @@
  * Validate string.
  */
 class PluginValidateString{
+  private $i18n = null;
+  function __construct() {
+    wfPlugin::includeonce('i18n/translate_v1');
+    $this->i18n = new PluginI18nTranslate_v1();
+    $this->i18n->setPath('/plugin/validate/string/i18n');
+  }
   /**
    * Character validation.
    */
@@ -19,7 +25,7 @@ class PluginValidateString{
       }
       if($error){
         $form = wfArray::set($form, "items/$field/is_valid", false);
-        $form = wfArray::set($form, "items/$field/errors/", __("?label has invalid characters!", array('?label' => wfArray::get($form, "items/$field/label"))));
+        $form = wfArray::set($form, "items/$field/errors/", $this->i18n->translateFromTheme("?label has invalid characters!", array('?label' => wfArray::get($form, "items/$field/label"))));
       }
     }
     return $form;
@@ -34,7 +40,7 @@ class PluginValidateString{
       $length = $data['length'];
       if($current_length > $length){
         $form = wfArray::set($form, "items/$field/is_valid", false);
-        $form = wfArray::set($form, "items/$field/errors/", __("?label has a length of ?current_length where ?length is max!", array('?label' => wfArray::get($form, "items/$field/label"), '?length' => $length, '?current_length' => $current_length)));
+        $form = wfArray::set($form, "items/$field/errors/", $this->i18n->translateFromTheme("?label has a length of ?current_length where ?length is max!", array('?label' => wfArray::get($form, "items/$field/label"), '?length' => $length, '?current_length' => $current_length)));
       }
     }
     return $form;
@@ -50,7 +56,7 @@ class PluginValidateString{
       $max = wfArray::get($data, 'max');
       if($strlen>0 && ($strlen<$min || $strlen>$max)){
         $form = wfArray::set($form, "items/$field/is_valid", false);
-        $form = wfArray::set($form, "items/$field/errors/", __("?label must have a length between ?min and ?max!", array('?label' => wfArray::get($form, "items/$field/label"), '?min' => $min, '?max' => $max)));
+        $form = wfArray::set($form, "items/$field/errors/", $this->i18n->translateFromTheme("?label must have a length between ?min and ?max!", array('?label' => wfArray::get($form, "items/$field/label"), '?min' => $min, '?max' => $max)));
       }
     }
     return $form;
