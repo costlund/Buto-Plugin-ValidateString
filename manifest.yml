@@ -1,5 +1,9 @@
-version: '1.2.0'
+version: '1.2.1'
 history:
+  '1.2.1':
+    date: '2020-09-30'
+    title: Typo
+    description: 'Type fix.'
   '1.2.0':
     date: '2020-06-25'
     title: Disallow parameter in validate_characters
