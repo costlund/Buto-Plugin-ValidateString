@@ -63,15 +63,36 @@ class PluginValidateString{
    * Will only check if string not empty.
    */
   public function validate_length_minmax($field, $form, $data = array('min' => 0, 'max' => 255)){
-    if(wfArray::get($form, "items/$field/is_valid") && isset($data['min']) && isset($data['max'])){
+    $data = new PluginWfArray($data);
+    /**
+     * 
+     */
+    if($data->get('min') && !$data->get('max')){
+      $data->set('max', $data->get('min'));
+    }
+    /**
+     * 
+     */
+    if(wfArray::get($form, "items/$field/is_valid") && $data->get('min') && $data->get('max')){
       $strlen = strlen(wfArray::get($form, "items/$field/post_value"));
-      $min = wfArray::get($data, 'min');
-      $max = wfArray::get($data, 'max');
+      $min = $data->get('min');
+      $max = $data->get('max');
       if($strlen>0 && ($strlen<$min || $strlen>$max)){
         $form = wfArray::set($form, "items/$field/is_valid", false);
-        $form = wfArray::set($form, "items/$field/errors/", $this->i18n->translateFromTheme("?label must have a length between ?min and ?max!", array('?label' => wfArray::get($form, "items/$field/label"), '?min' => $min, '?max' => $max)));
+        /**
+         * 
+         */
+        if($min != $max){
+          $message = "?label must have a length between ?min and ?max!";
+        }else{
+          $message = "?label must have a length of ?min!";
+        }
+        $form = wfArray::set($form, "items/$field/errors/", $this->i18n->translateFromTheme($message, array('?label' => wfArray::get($form, "items/$field/label"), '?min' => $min, '?max' => $max)));
       }
     }
+    /**
+     * 
+     */
     return $form;
   }
 }

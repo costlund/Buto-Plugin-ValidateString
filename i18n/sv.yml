@@ -2,3 +2,4 @@
 ?label has a length of ?current_length where ?length is max!: ?label har en längd på ?current_length där ?length är max!
 ?label can only have characters like ?characters!: ?label får bara innehålla tecknen ?characters!
 ?label can not have any characters like ?characters!: ?label får inte innehålla tecknen ?characters!
+?label must have a length of ?min!: ?label måste ha en längd på ?min!

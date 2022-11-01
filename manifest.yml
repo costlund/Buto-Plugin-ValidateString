@@ -1,18 +1,22 @@
-version: '1.2.1'
+version: 1.3.0
 history:
-  '1.2.1':
+  1.3.0:
+    date: '2022-11-01'
+    title: Max
+    description: 'Handle param max if only min is set in method validate_length_minmax.'
+  1.2.1:
     date: '2020-09-30'
     title: Typo
     description: 'Type fix.'
-  '1.2.0':
+  1.2.0:
     date: '2020-06-25'
     title: Disallow parameter in validate_characters
     description: 'Validator validate_characters can have disallow parameter.'
-  '1.1.0':
+  1.1.0:
     date: '2019-12-02'
     title: I18N
     description: 'Using own i18n folder.'
-  '1.0.0':
+  1.0.0:
     date: '2019-02-06'
     title: First version
     description: 'Manifest created.'
