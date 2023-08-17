@@ -18,14 +18,14 @@ class PluginValidateString{
       $str = wfArray::get($form, "items/$field/post_value");
       $error = false;
       for($i=0;$i<strlen($str);$i++){
-        $j = substr($str, $i, 1);
+        $j = wfPhpfunc::substr($str, $i, 1);
         if(!$data->get('disallow')){
-          if(!strstr($data->get('characters'), $j)){
+          if(!wfPhpfunc::strstr($data->get('characters'), $j)){
             $error = true;
             break;
           }
         }else{
-          if(strstr($data->get('characters'), $j)){
+          if(wfPhpfunc::strstr($data->get('characters'), $j)){
             $error = true;
             break;
           }
@@ -49,7 +49,7 @@ class PluginValidateString{
   public function validate_length($field, $form, $data = array('length' => 255)){
     if(wfArray::get($form, "items/$field/is_valid") && isset($data['length'])){
       $str = wfArray::get($form, "items/$field/post_value");
-      $current_length = strlen(wfArray::get($form, "items/$field/post_value"));
+      $current_length = wfPhpfunc::strlen(wfArray::get($form, "items/$field/post_value"));
       $length = $data['length'];
       if($current_length > $length){
         $form = wfArray::set($form, "items/$field/is_valid", false);
@@ -74,7 +74,7 @@ class PluginValidateString{
      * 
      */
     if(wfArray::get($form, "items/$field/is_valid") && $data->get('min') && $data->get('max')){
-      $strlen = strlen(wfArray::get($form, "items/$field/post_value"));
+      $strlen = wfPhpfunc::strlen(wfArray::get($form, "items/$field/post_value"));
       $min = $data->get('min');
       $max = $data->get('max');
       if($strlen>0 && ($strlen<$min || $strlen>$max)){
